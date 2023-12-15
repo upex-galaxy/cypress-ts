@@ -9,11 +9,12 @@ export function removeLogs() {
 		return false;
 	});
 	// Comando predeterminado para que no aparezcan los Fetch en el log del Test Runner:
-	Cypress.log = function (opts: Partial<Cypress.LogConfig>): Cypress.Log {
+	const origLog = Cypress.log;
+	Cypress.log = function (opts: Partial<Cypress.LogConfig>, ...other): Cypress.Log {
 		if (opts.displayName === 'xhr' || opts.displayName === 'fetch') {
 			return {} as Cypress.Log;
 		} else {
-			return Cypress.log(opts);
+			return origLog(opts, ...other);
 		}
 	};
 }
