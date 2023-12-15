@@ -1,11 +1,11 @@
-/// <reference types="cypress" />
-
-import { tokenResponse } from '@apiTypes';
 import { loginPage } from '@pages/LoginPage';
-
 // ***********************************************
 // https://on.cypress.io/custom-commands
 // ***********************************************
+
+beforeEach(() => {
+	cy.intercept({ resourceType: /^(xhr|fetch)$/ }, { statusCode: 200, body: { data: 'fake data' } });
+});
 
 // -- This is a parent command --
 Cypress.Commands.add('getInputValue', (locator: Cypress.Chainable<JQuery<HTMLElement>>) => {
@@ -26,24 +26,6 @@ Cypress.Commands.add('login', (username: string, password: string) => {
 });
 Cypress.Commands.add('loginSuccessful', () => {
 	cy.login('Admin', 'admin123');
-});
-
-Cypress.Commands.add('getApiToken', () => {
-	const api: Cypress.api = Cypress.env('api');
-	const endpoint = api.domain + api.auth;
-	return cy
-		.api({
-			method: 'Post',
-			url: endpoint,
-			body: {
-				public_key: Cypress.env('apikey'),
-			},
-		})
-		.then(response => {
-			expect(response.status).equal(200);
-			const json: tokenResponse = response.body;
-			return json.token;
-		});
 });
 
 //
