@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { Tool, processRequest, processResponse, startResponse, uploadRequest, uploadResponse } from '@apiTypes';
 const api: Cypress.api = Cypress.env('api');
 

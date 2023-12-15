@@ -1,10 +1,21 @@
 {
 	"compilerOptions": {
+		"module": "ESNext",
+		"target": "ESNext",
 		"esModuleInterop": true,
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
 		"strict": true,
-		"target": "es5",
 		"lib": ["es5", "dom"],
-		"types": ["cypress", "node", "cypress-plugin-api"],
+		"types": [
+			"cypress",
+			"cypress-file-upload",
+			"cypress-xpath",
+			"cypress-downloadfile",
+			"cypress-plugin-api",
+			"@shelex/cypress-allure-plugin",
+			"cypress-plugin-steps"
+		],
 		"paths": {
 			"@pages/*": ["./cypress/support/pages/*"],
 			"@api/*": ["./cypress/support/apis/*"],
@@ -14,5 +25,5 @@
 		}
 	},
 	"include": ["**/*.ts", "cypress.d.ts"],
-	"exclude": ["node_modules"]
+	"exclude": ["node_modules"],
 }

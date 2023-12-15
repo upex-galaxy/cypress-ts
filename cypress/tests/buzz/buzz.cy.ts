@@ -10,7 +10,7 @@ describe('Verify Buzz Features', () => {
 
 	it('Validate Post a Message', () => {
 		const givenMessage = 'testing in blackhole';
-		const firstInFeed = 0;
+		// const firstInFeed = 0;
 
 		cy.intercept({
 			method: 'POST',
