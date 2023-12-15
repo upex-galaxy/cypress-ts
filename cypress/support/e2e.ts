@@ -14,8 +14,11 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
+import { removeLogs } from '@util/logs';
 import './commands';
 import 'cypress-plugin-api';
+
+removeLogs();
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
